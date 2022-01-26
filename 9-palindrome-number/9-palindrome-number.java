@@ -5,17 +5,12 @@ class Solution {
         }
         else{
             String str = Integer.toString(x);
-            String rev = "";
-            char ch;
-            for (int i=0; i<str.length(); i++)
-                {
-                    ch= str.charAt(i); 
-                    rev= ch+rev;
+            for(int i=0;i<str.length()/2;i++){
+                if(str.charAt(i)!=str.charAt(str.length()-i-1)){
+                    return false;
                 }
-            if(str.equals(rev)){
-                return true;
             }
+            return true;
         }
-        return false;
     }
 }
