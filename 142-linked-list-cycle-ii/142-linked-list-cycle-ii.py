@@ -6,11 +6,15 @@
 
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = head
-        seen = set()
-        while dummy:
-            if dummy in seen:
-                return dummy
-            seen.add(dummy)
-            dummy = dummy.next
+        hare=head
+        turtle=head
+        while hare!=None and hare.next!=None and turtle!=None:
+            hare=hare.next.next
+            turtle=turtle.next
+            if hare==turtle:
+                hare=head
+                while hare!=turtle:
+                    hare=hare.next
+                    turtle=turtle.next
+                return hare
         return None
