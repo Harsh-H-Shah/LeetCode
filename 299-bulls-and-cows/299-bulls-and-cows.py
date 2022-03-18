@@ -1,23 +1,24 @@
 class Solution:
     def getHint(self, secret: str, guess: str) -> str:
-        A = 0
-        B = 0
-        secret = [char for char in secret]
-        guess = [char for char in guess]
-        for i in range(len(secret)):
+        secret, guess = list(secret), list(guess)
+
+        l = len(secret)
+        a = 0
+
+        for i in range(0, l):
             if secret[i]==guess[i]:
-                A+=1
-                secret[i] = '*'
-                guess[i] = '@'
-        for i in range(len(guess)):
-            if guess[i] in secret:
-                B+=1
-                for j in range(len(secret)):
-                    if guess[i]==secret[j]:
-                        secret[j] = '*'
-                        break
-        print(secret)
-        print(guess)
-        return(str(A)+"A"+str(B)+"B")
-                
+                secret[i]="#"
+                guess[i]="#"
+                a+=1
+        b = 0
+
+        secret = collections.Counter(secret)
+
+        for i in range(0, l):
+            if guess[i]!="#":
+                if guess[i] in secret and secret[guess[i]]>0:
+                    secret[guess[i]]-=1
+                    b+=1
+
+        return str(a)+"A"+str(b)+"B"
         
