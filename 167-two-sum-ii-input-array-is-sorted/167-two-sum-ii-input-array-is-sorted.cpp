@@ -7,9 +7,9 @@ public:
             if(nums[l]+nums[r] == target)
                 return {l+1,r+1};
             if(nums[l]+nums[r] > target)
-                r--;
+                --r;
             else
-                l++;
+                ++l;
         }
         return {-1};
     }
